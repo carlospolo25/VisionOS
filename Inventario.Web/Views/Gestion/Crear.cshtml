@@ -1,0 +1,92 @@
+﻿@model Inventario.Web.Models.Gestion.GestionViewModel
+
+@{
+    ViewData["Title"] = "Crear producto";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Crear.css" />
+}
+
+<div class="gestion-crear">
+
+    <!-- ENCABEZADO -->
+    <div class="gestion-crear__header">
+        <h2 class="gestion-crear__title">
+            ➕ Crear producto
+        </h2>
+        <p class="gestion-crear__subtitle">
+            Registra un nuevo producto en el inventario
+        </p>
+    </div>
+
+    <!-- FORMULARIO -->
+    <div class="gestion-crear__card">
+
+        <form asp-action="Crear"
+              method="post"
+              class="gestion-crear__form">
+
+            @* 🔐 Seguridad *@
+            @Html.AntiForgeryToken()
+
+            @* ❗ Errores generales *@
+            <div asp-validation-summary="ModelOnly" class="form-error-global"></div>
+
+            <div class="form-group">
+                <label asp-for="Nombre" class="form-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="form-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Descripcion" class="form-label"></label>
+                <textarea asp-for="Descripcion"
+                          class="form-control form-control--textarea"></textarea>
+                <span asp-validation-for="Descripcion" class="form-error"></span>
+            </div>
+
+            <div class="form-row">
+
+                <div class="form-group">
+                    <label asp-for="Precio" class="form-label"></label>
+                    <input asp-for="Precio"
+                           type="number"
+                           step="0.01"
+                           class="form-control" />
+                    <span asp-validation-for="Precio" class="form-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Stock" class="form-label"></label>
+                    <input asp-for="Stock"
+                           type="number"
+                           class="form-control" />
+                    <span asp-validation-for="Stock" class="form-error"></span>
+                </div>
+
+            </div>
+
+            <!-- ACCIONES -->
+            <div class="gestion-crear__actions">
+                <button type="submit"
+                        class="btn btn-primary gestion-crear__btn">
+                    💾 Guardar producto
+                </button>
+
+                <a asp-action="Gestion"
+                   class="btn btn-secondary gestion-crear__btn">
+                    Cancelar
+                </a>
+            </div>
+
+        </form>
+
+    </div>
+
+    <a asp-action="Gestion"
+       class="btn btn-secondary mt-3">
+        Volver
+    </a>
+
+</div>

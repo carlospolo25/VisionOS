@@ -1,0 +1,103 @@
+﻿/* CONTENEDOR GENERAL */
+.gestion-crear {
+    max-width: 720px;
+    margin: 40px auto;
+    padding: 10px;
+}
+
+/* HEADER */
+.gestion-crear__header {
+    margin-bottom: 25px;
+}
+
+.gestion-crear__title {
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.gestion-crear__subtitle {
+    color: #6c757d;
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+/* CARD */
+.gestion-crear__card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+}
+
+/* FORM */
+.gestion-crear__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* INPUTS */
+.form-label {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.form-control {
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid #dee2e6;
+    transition: 0.2s ease;
+}
+
+    .form-control:focus {
+        border-color: #4f8cff;
+        box-shadow: 0 0 0 0.15rem rgba(79,140,255,.25);
+    }
+
+/* TEXTAREA */
+.form-control--textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+/* ROW DOBLE */
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+    .form-row .form-group {
+        flex: 1;
+    }
+
+/* ERRORES */
+.form-error {
+    color: #dc3545;
+    font-size: 0.8rem;
+}
+
+.form-error-global {
+    color: #dc3545;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+/* BOTONES */
+.gestion-crear__actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.gestion-crear__btn {
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+    .gestion-crear__btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+    }

@@ -1,0 +1,192 @@
+﻿/* ===============================
+   DASHBOARD BASE
+==================================*/
+
+.dashboard-container {
+    padding: 40px;
+    background: linear-gradient(135deg, #f4f6fb, #eef2f9);
+    min-height: 100vh;
+}
+
+/* ===============================
+   HEADER
+==================================*/
+
+.dashboard-header-pro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.dashboard-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-subtitle {
+    margin: 0;
+    color: #6c757d;
+    font-size: 14px;
+}
+
+/* ===============================
+   METRIC CARDS
+==================================*/
+
+.metric-card {
+    background: #ffffff;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
+    transition: all 0.25s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+    .metric-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    }
+
+.metric-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.metric-value {
+    font-size: 34px;
+    font-weight: 700;
+}
+
+/* Main Metric (Total Productos) */
+.main-metric {
+    background: linear-gradient(135deg, #0d6efd, #3a8bfd);
+    color: white;
+}
+
+    .main-metric .metric-label {
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .main-metric .metric-value {
+        font-size: 40px;
+    }
+
+/* Colores de estado */
+
+.stock-ok {
+    border-left: 6px solid #198754;
+}
+
+.stock-warning {
+    border-left: 6px solid #ffc107;
+}
+
+.stock-danger {
+    border-left: 6px solid #dc3545;
+}
+
+.stock-ok .metric-value {
+    color: #198754;
+}
+
+.stock-warning .metric-value {
+    color: #ffc107;
+}
+
+.stock-danger .metric-value {
+    color: #dc3545;
+}
+
+/* Valor Inventario */
+
+.value-card {
+    border-left: 6px solid #0d6efd;
+}
+
+/* ===============================
+   SECTION TITLE
+==================================*/
+
+.section-title {
+    font-weight: 600;
+    margin-bottom: 18px;
+    letter-spacing: -0.3px;
+}
+
+/* ===============================
+   TABLE STYLE
+==================================*/
+
+.dashboard-table {
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+    .dashboard-table thead {
+        background: #f8f9fc;
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .dashboard-table tbody tr {
+        transition: background 0.2s ease;
+    }
+
+        .dashboard-table tbody tr:hover {
+            background: #f2f6ff;
+        }
+
+/* ===============================
+   ALERT STATUS
+==================================*/
+
+.alert {
+    border-radius: 14px;
+    font-weight: 500;
+    padding: 16px 20px;
+    margin-top: 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+}
+
+.alert-success {
+    background: linear-gradient(135deg, #d1f5e0, #e6fff4);
+    border: none;
+    color: #198754;
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #fff3cd, #fff8e5);
+    border: none;
+    color: #b58100;
+}
+
+.alert-danger {
+    background: linear-gradient(135deg, #f8d7da, #ffe6e8);
+    border: none;
+    color: #dc3545;
+}
+
+/* ===============================
+   BUTTONS
+==================================*/
+
+.btn-primary {
+    border-radius: 12px;
+    padding: 8px 18px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+    .btn-primary:hover {
+        transform: translateY(-2px);
+    }

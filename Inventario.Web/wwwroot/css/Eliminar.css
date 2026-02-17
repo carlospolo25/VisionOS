@@ -1,0 +1,104 @@
+﻿/* CONTENEDOR GENERAL */
+.gestion-eliminar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 30px;
+}
+
+/* HEADER */
+.gestion-eliminar__header {
+    margin-bottom: 20px;
+}
+
+.gestion-eliminar__title {
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.gestion-eliminar__subtitle {
+    color: #6c757d;
+    margin-top: 5px;
+}
+
+/* BUSCADOR */
+.gestion-eliminar__search {
+    margin-bottom: 20px;
+}
+
+.gestion-eliminar__input {
+    width: 300px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ced4da;
+}
+
+/* CARD CONTENEDOR */
+.gestion-eliminar__card {
+    background: white;
+    border-radius: 14px;
+    padding: 0;
+    box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+/* 👇 CLAVE: SCROLL INTERNO */
+.gestion-eliminar__table-wrapper {
+    max-height: 420px;
+    overflow-y: auto;
+}
+
+/* TABLA */
+.gestion-eliminar__table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .gestion-eliminar__table thead {
+        background: #f8f9fa;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+    }
+
+    .gestion-eliminar__table th {
+        text-align: left;
+        padding: 12px;
+        font-weight: 600;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .gestion-eliminar__table td {
+        padding: 12px;
+        border-bottom: 1px solid #f1f1f1;
+    }
+
+    /* HOVER FILAS */
+    .gestion-eliminar__table tbody tr:hover {
+        background: #fafafa;
+    }
+
+/* BOTÓN */
+.gestion-eliminar__actions {
+    text-align: right;
+}
+
+/* ESTADO VACÍO */
+.gestion-eliminar__empty {
+    text-align: center;
+    padding: 20px;
+    color: #6c757d;
+}
+
+/* SCROLL BONITO */
+.gestion-eliminar__table-wrapper::-webkit-scrollbar {
+    width: 8px;
+}
+
+.gestion-eliminar__table-wrapper::-webkit-scrollbar-thumb {
+    background: #ced4da;
+    border-radius: 4px;
+}
+
+    .gestion-eliminar__table-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #adb5bd;
+    }

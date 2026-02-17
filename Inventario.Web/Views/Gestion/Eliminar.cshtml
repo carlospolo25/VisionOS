@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Inventario.Web.Models.Gestion.GestionViewModel>
+
+@{
+    ViewData["Title"] = "Eliminar productos";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/Eliminar.css" />
+}
+
+<div class="gestion-eliminar">
+
+    <!-- ENCABEZADO -->
+    <div class="gestion-eliminar__header">
+        <h2 class="gestion-eliminar__title">
+            🗑 Eliminar productos
+        </h2>
+        <p class="gestion-eliminar__subtitle">
+            Busca un producto y elimínalo del inventario
+        </p>
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="gestion-eliminar__search">
+        <form method="get" asp-action="Eliminar">
+            <input type="text"
+                   name="q"
+                   value="@Context.Request.Query["q"]"
+                   placeholder="Buscar por nombre..."
+                   class="gestion-eliminar__input" />
+
+            <button type="submit"
+                    class="btn btn-outline-secondary">
+                Buscar
+            </button>
+        </form>
+    </div>
+
+    <!-- LISTA -->
+    <!-- LISTA -->
+    <div class="gestion-eliminar__card">
+
+        <div class="gestion-eliminar__table-wrapper">
+
+            <table class="gestion-eliminar__table">
+
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Precio</th>
+                        <th>Stock</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="gestion-eliminar__empty">
+                                No se encontraron productos
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var p in Model)
+                        {
+                            <tr>
+                                <td>@p.Nombre</td>
+                                <td>$@p.Precio</td>
+                                <td>@p.Stock</td>
+                                <td class="gestion-eliminar__actions">
+
+                                    <form asp-action="Eliminar"
+                                            asp-route-id="@p.Id"
+                                            method="post"
+                                            onsubmit="return confirm('¿Eliminar este producto?');">
+
+                                        <button type="submit"
+                                                class="btn btn-danger btn-sm">
+                                            Eliminar
+                                        </button>
+                                    </form>
+
+                                </td>
+                            </tr>
+                        }
+                    }s
+                </tbody>
+            </table>
+        </div>  
+    </div>
+
+    <a asp-action="Gestion"
+       class="btn btn-secondary mt-3">
+        Volver
+    </a>
+
+</div>

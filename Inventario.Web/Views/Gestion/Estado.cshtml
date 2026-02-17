@@ -1,0 +1,120 @@
+﻿@model IEnumerable<Inventario.Web.Models.Gestion.GestionViewModel>
+
+@{
+    ViewData["Title"] = "Activar / Desactivar productos";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Estado.css" />
+}
+
+<div class="gestion-estado">
+
+    <!-- ENCABEZADO -->
+    <div class="gestion-estado__header">
+        <h2 class="gestion-estado__title">
+            🔄 Activar / Desactivar productos
+        </h2>
+        <p class="gestion-estado__subtitle">
+            Controla qué productos están disponibles en el sistema
+        </p>
+    </div>
+
+    <!-- BUSCADOR -->
+    <div class="gestion-estado__search">
+        <form method="get" asp-action="Estado">
+            <input type="text"
+                    name="e"
+                    value="@Context.Request.Query["e"]"
+                    placeholder="Buscar por nombre..."
+                    class="gestion-eliminar__input" />
+
+            <button type="submit"
+                    class="btn btn-outline-secondary">
+                Buscar
+            </button>
+        </form>
+    </div>
+
+    <!-- LISTA -->
+    <div class="gestion-estado__card">
+
+        <div class="gestion-estado__table-wrapper">
+
+            <table class="gestion-estado__table">
+
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th>Estado</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model == null || !Model.Any())
+                    {
+                        <tr>
+                            <td colspan="4" class="gestion-estado__empty">
+                                No hay productos
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        foreach (var p in Model)
+                        {
+                            <tr class="@(p.Activo ? "" : "gestion-estado__row--inactivo")">
+                                <td>@p.Nombre</td>
+                                <td>@p.Stock</td>
+                                <td>
+                                    @if (p.Activo)
+                                    {
+                                        <span class="badge bg-success">Activo</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Inactivo</span>
+                                    }
+                                </td>
+                                <td class="gestion-estado__actions">
+
+                                    @if (p.Activo)
+                                    {
+                                        <form asp-action="Desactivar"
+                                                asp-route-id="@p.Id"
+                                                method="post"
+                                                onsubmit="return confirm('¿Desactivar este producto?');">
+                                            <button class="btn btn-warning btn-sm">
+                                                Desactivar
+                                            </button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-action="Estado"
+                                                asp-route-id="@p.Id"
+                                                method="post"
+                                                onsubmit="return confirm('¿Activar este producto?');">
+                                            <button class="btn btn-success btn-sm">
+                                                Activar
+                                            </button>
+                                        </form>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </Div>
+    </div>
+
+    <a asp-action="Gestion"
+        class="btn btn-secondary mt-3">
+        Volver
+    </a>
+
+</div>

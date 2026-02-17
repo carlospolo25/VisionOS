@@ -1,0 +1,31 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+@section Styles {
+    <link rel="stylesheet" href="~/css/Home.css" />
+}
+<div class="hero">
+
+    <div class="contenido text-center">
+
+        <img src="~/imagenes/visionos-logo.png" class="logo" alt="VisiónOS Logo" />
+
+        <h1 class="titulo">Bienvenido a VisiónOS</h1>
+
+        <p class="subtitulo">
+            Plataforma inteligente para la gestión moderna.
+        </p>
+
+        <div class="botones">
+            <a asp-controller="Home" asp-action="Login" class="btn btn-primary btn-lg">
+                Iniciar sesión
+            </a>
+
+            <a asp-controller="Home" asp-action="Registrar" class="btn btn-outline-light btn-lg">
+                Registrarse
+            </a>
+        </div>
+
+    </div>
+
+</div>

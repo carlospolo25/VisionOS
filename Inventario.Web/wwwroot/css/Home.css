@@ -1,0 +1,45 @@
+.hero {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0d6efd, #198754, #dc3545);
+    background-size: 300% 300%;
+    animation: gradientMove 8s ease infinite;
+    color: white;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.logo {
+    width: 250px;
+    margin-bottom: 20px;
+}
+
+.titulo {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.subtitulo {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+}
+
+.botones a {
+    margin: 10px;
+    padding: 12px 30px;
+    border-radius: 30px;
+}

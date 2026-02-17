@@ -1,0 +1,195 @@
+﻿@model Inventario.Web.Models.Dashboard.DashboardViewModel
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Dashboard.css" />
+}
+
+<div class="dashboard-container">
+
+    <!-- HEADER -->
+    <div class="dashboard-header-pro">
+
+        <div>
+            <h2 class="dashboard-title">Dashboard</h2>
+            <p class="dashboard-subtitle">
+                Resumen general del inventario
+            </p>
+        </div>
+
+        <button class="btn btn-primary"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#dashboardMenu"
+                aria-controls="dashboardMenu">
+            ⚙ Acciones
+        </button>
+
+    </div>
+
+    <!-- MÉTRICAS PRINCIPALES -->
+    <div class="row g-4 mt-3">
+
+        <div class="col-md-3">
+            <div class="metric-card main-metric">
+                <div class="metric-label">Total de productos</div>
+                <div class="metric-value">@Model.TotalProductos</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="metric-card stock-ok">
+                <div class="metric-label">Con stock</div>
+                <div class="metric-value">@Model.ProductosConStock</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="metric-card stock-warning">
+                <div class="metric-label">Stock crítico</div>
+                <div class="metric-value">@Model.StockCritico</div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="metric-card stock-danger">
+                <div class="metric-label">Sin stock</div>
+                <div class="metric-value">@Model.SinStock</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VALOR INVENTARIO -->
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="metric-card value-card">
+                <div class="metric-label">Valor del inventario</div>
+                <div class="metric-value text-primary">
+                    $@Model.ValorInventario.ToString("N2")
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-5">
+
+        <h4 class="section-title">🔥 Productos que requieren atención</h4>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Stock</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var p in Model.ProductosEnRiesgo)
+                    {
+                        var clase =
+                        p.Stock == 0 ? "text-danger fw-bold" :
+                        p.Stock <= 5 ? "text-warning fw-bold" :
+                        "";
+
+                        <tr>
+                            <td>@p.Nombre</td>
+                            <td class="@clase">@p.Stock</td>
+                            <td>
+                                <a class="btn btn-sm btn-outline-primary"
+                                   href="/Productos/Detalle/@p.Id">
+                                    Ver
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+    <div>
+
+        @if (Model.PorcentajeRiesgo < 20)
+        {
+            <div class="alert alert-success">
+                🟢 Inventario saludable (@Model.PorcentajeRiesgo.ToString("N1") % en riesgo)
+            </div>
+        }
+        else if (Model.PorcentajeRiesgo < 40)
+        {
+            <div class="alert alert-warning">
+                🟡 Atención requerida (@Model.PorcentajeRiesgo.ToString("N1") % en riesgo)
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                🔴 Inventario crítico (@Model.PorcentajeRiesgo.ToString("N1") % en riesgo)
+            </div>
+        }
+
+    </div>
+
+</div>
+
+
+
+
+<!-- OFFCANVAS (fuera del contenedor principal) -->
+<div class="offcanvas offcanvas-end"
+     tabindex="-1"
+     id="dashboardMenu"
+     aria-labelledby="dashboardMenuLabel">
+
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="dashboardMenuLabel">
+            ⚙ Acciones del Dashboard
+        </h5>
+        <button type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close">
+        </button>
+    </div>
+
+    <div class="offcanvas-body">
+
+        <div class="d-grid gap-2">
+
+            <a asp-controller="Gestion"
+               asp-action="Gestion"
+               class="btn btn-primary">
+                Gestión
+            </a>
+
+            <a asp-controller="Productos"
+               asp-action="Index"
+               class="btn btn-outline-secondary">
+                📦 Ver todos los productos
+            </a>
+
+            <a href="/Productos?filtro=sin-stock"
+               class="btn btn-outline-danger">
+                ⚠ Productos sin stock
+            </a>
+
+            <a href="/Productos?filtro=critico"
+               class="btn btn-outline-warning">
+                🟡 Stock crítico
+            </a>
+
+            <hr />
+
+            <a asp-controller="Reportes"
+               asp-action="Reportes"
+               class="btn btn-outline-dark">
+                📄 Reportes
+            </a>
+
+        </div>
+
+    </div>
+</div>

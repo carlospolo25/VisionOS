@@ -1,0 +1,50 @@
+﻿@model Inventario.Web.Models.Auth.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Register.css" />
+}
+
+<div class="register-wrapper">
+
+    <div class="register-box">
+
+        <div class="register-header text-center">
+            <img src="~/imagenes/visionos-logo.png" class="register-logo" />
+            <h2>Registro</h2>
+            <p>Crea tu cuenta en VisiónOS</p>
+        </div>
+
+        <form asp-controller="Auth" asp-action="Register" method="post">
+
+            <div class="input-group-custom">
+                <input asp-for="Nombre" placeholder="Nombre completo" />
+            </div>
+
+            <div class="input-group-custom">
+                <input asp-for="Email" placeholder="Correo electrónico" />
+            </div>
+
+            <div class="input-group-custom">
+                <input asp-for="Password" type="password" placeholder="Contraseña" />
+            </div>
+
+            <button class="register-btn">
+                Crear cuenta
+            </button>
+
+            @if (ViewBag.Error != null)
+            {
+                <div class="error-box">
+                    @ViewBag.Error
+                </div>
+            }
+
+        </form>
+
+    </div>
+
+</div>

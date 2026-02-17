@@ -1,0 +1,145 @@
+﻿@using System.Globalization
+@model Inventario.Web.Models.Gestion.EditarGestionViewModel
+
+@{
+    ViewData["Title"] = "Gestión";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Gestion.css" asp-append-version="true" />
+}
+
+
+<div class="gestion-container">
+
+    <!-- HEADER -->
+    <div class="gestion-header">
+        <div>
+            <h2 class="gestion-title">Gestión de Productos</h2>
+            <p class="gestion-subtitle">
+                Administración completa del inventario
+            </p>
+        </div>
+
+        <form method="get" class="gestion-search">
+            <div class="input-group">
+                <input type="text"
+                       name="busqueda"
+                       value="@Model.Busqueda"
+                       class="form-control"
+                       placeholder="🔎 Buscar por nombre..." />
+                <button class="btn btn-primary" type="submit">
+                    Buscar
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row mt-4">
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="col-lg-9">
+
+            <div class="gestion-wrapper">
+                <div class="gestion-inner">
+
+                    <div class="gestion-card">
+
+                        <div class="gestion-card-header">
+                            📦 Lista de productos
+                            <span class="badge bg-primary">
+                                @Model.Productos.Count
+                            </span>
+                        </div>
+
+                        <div class="gestion-table-container">
+                            <table class="table table-hover align-middle gestion-table mb-0">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Descripción</th>
+                                        <th>Precio</th>
+                                        <th>Stock</th>
+                                        <th>Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in Model.Productos)
+                                    {
+                                        var stockClass =
+                                        p.Stock == 0 ? "text-danger fw-bold" :
+                                        p.Stock <= 5 ? "text-warning fw-bold" :
+                                        "text-success fw-semibold";
+
+                                        <tr>
+                                            <td class="fw-semibold">@p.Nombre</td>
+                                            <td>@p.Descripcion</td>
+                                            <td>
+                                                @p.Precio.ToString("C", new CultureInfo("es-CO"))
+                                            </td>
+                                            <td class="@stockClass">@p.Stock</td>
+                                            <td>
+                                                <span class="badge @(p.Activo ? "bg-success" : "bg-secondary")">
+                                                    @(p.Activo ? "Activo" : "Inactivo")
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PANEL LATERAL -->
+        <div class="col-lg-3">
+
+            <div class="gestion-actions">
+
+                <h5 class="mb-3">⚙ Acciones</h5>
+
+                <div class="d-grid gap-3">
+
+                    <a asp-controller="Gestion"
+                       asp-action="Crear"
+                       class="btn btn-primary btn-lg">
+                        ➕ Crear producto
+                    </a>
+
+                    <a asp-controller="Gestion"
+                       asp-action="Editar"
+                       class="btn btn-outline-secondary">
+                        ✏ Editar producto
+                    </a>
+
+                    <a asp-controller="Gestion"
+                       asp-action="Eliminar"
+                       class="btn btn-outline-danger">
+                        🗑 Eliminar producto
+                    </a>
+
+                    <a asp-controller="Gestion"
+                       asp-action="Estado"
+                       class="btn btn-outline-dark">
+                        🔄 Estados
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <a asp-controller="Dashboard" asp-action="Dashboard"
+       class="btn btn-secondary mt-3">
+        Volver
+    </a>
+
+</div>

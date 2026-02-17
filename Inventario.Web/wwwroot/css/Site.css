@@ -1,0 +1,39 @@
+﻿body {
+}
+/* ====== LAYOUT BASE ====== */
+
+.layout-body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.layout-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout-content {
+    flex: 1;
+    padding-bottom: 40px;
+}
+
+/* ====== FOOTER ====== */
+
+.layout-footer {
+    background: #f8f9fa;
+    border-top: 1px solid #e5e7eb;
+    padding: 12px 0;
+    font-size: 14px;
+    color: #6b7280;
+}
+
+    .layout-footer a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+
+        .layout-footer a:hover {
+            text-decoration: underline;
+        }

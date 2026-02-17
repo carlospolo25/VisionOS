@@ -1,0 +1,68 @@
+﻿body {
+}
+
+.reporte-container {
+    padding: 30px;
+    background: #f4f6f9;
+}
+
+.reporte-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.reporte-title {
+    margin: 0;
+    font-weight: 700;
+}
+
+.reporte-subtitle {
+    margin: 0;
+    color: #6c757d;
+}
+
+.reporte-badge {
+    background: #eef2ff;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.kpi {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.05);
+}
+
+    .kpi.success {
+        border-left: 4px solid #198754;
+    }
+
+    .kpi.warning {
+        border-left: 4px solid #ffc107;
+    }
+
+    .kpi.danger {
+        border-left: 4px solid #dc3545;
+    }
+
+.valor-card {
+    background: white;
+    padding: 25px;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}
+
+.reporte-card {
+    background: white;
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+}

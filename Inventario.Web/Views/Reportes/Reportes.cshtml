@@ -1,0 +1,159 @@
+﻿@model Inventario.Web.Models.Reportes.ReportesViewModel
+
+@{
+    ViewData["Title"] = "Reporte de Inventario";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/Reportes.css" />
+}
+
+<a asp-action="DescargarPdf" class="btn btn-outline-danger shadow-sm">
+    📄 Generar y Descargar PDF
+</a>
+
+
+
+<div class="reporte-container">
+
+    <!-- HEADER -->
+    <div class="reporte-header">
+        <div>
+            <h2 class="reporte-title">Reporte General de Inventario</h2>
+            <p class="reporte-subtitle">
+                Generado el @DateTime.Now.ToString("dd/MM/yyyy HH:mm")
+            </p>
+        </div>
+
+        <div class="reporte-badge">
+            % en riesgo: <strong>@Model.PorcentajeRiesgo.ToString("N1")%</strong>
+        </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="row g-3 mt-2">
+
+        <div class="col-md-3">
+            <div class="kpi">
+                <span>Total productos</span>
+                <h3>@Model.TotalProductos</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="kpi success">
+                <span>Activos</span>
+                <h3>@Model.Activos</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="kpi warning">
+                <span>Stock crítico</span>
+                <h3>@Model.StockCritico</h3>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="kpi danger">
+                <span>Sin stock</span>
+                <h3>@Model.SinStock</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- VALOR -->
+    <div class="valor-card mt-4">
+        <span>Valor total del inventario</span>
+        <h2>$@Model.ValorInventario.ToString("N2")</h2>
+    </div>
+
+    <!-- ALERTA -->
+    <div class="mt-4">
+        @if (Model.PorcentajeRiesgo < 20)
+        {
+            <div class="alert alert-success">
+                🟢 Inventario saludable
+            </div>
+        }
+        else if (Model.PorcentajeRiesgo < 40)
+        {
+            <div class="alert alert-warning">
+                🟡 Atención requerida
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-danger">
+                🔴 Inventario crítico
+            </div>
+        }
+    </div>
+
+    <!-- PRODUCTOS EN RIESGO -->
+    <div class="reporte-card mt-5">
+        <h5>Productos que requieren atención</h5>
+
+        <table class="table table-sm align-middle">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.ProductosEnRiesgo)
+                {
+                    var clase =
+                    p.Stock == 0 ? "text-danger fw-bold" :
+                    p.Stock <= 5 ? "text-warning fw-bold" :
+                    "";
+
+                    <tr>
+                        <td>@p.Nombre</td>
+                        <td class="@clase">@p.Stock</td>
+                        <td>
+                            <span class="badge @(p.Activo ? "bg-success" : "bg-secondary")">
+                                @(p.Activo ? "Activo" : "Inactivo")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- LISTADO COMPLETO -->
+    <div class="reporte-card mt-4">
+        <h5>Inventario completo</h5>
+
+        <table class="table table-hover align-middle">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var p in Model.Productos)
+                {
+                    <tr>
+                        <td>@p.Nombre</td>
+                        <td>@p.Stock</td>
+                        <td>$@p.Precio.ToString("N2")</td>
+                        <td>
+                            <span class="badge @(p.Activo ? "bg-success" : "bg-secondary")">
+                                @(p.Activo ? "Activo" : "Inactivo")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,106 @@
+﻿/* ===== CONTENEDOR GENERAL ===== */
+.gestion-editar {
+    padding: 20px;
+}
+
+/* ===== HEADER ===== */
+.gestion-editar__header {
+    margin-bottom: 15px;
+}
+
+.gestion-editar__title {
+    font-weight: 700;
+    font-size: 26px;
+    margin-bottom: 5px;
+}
+
+.gestion-editar__subtitle {
+    color: #6c757d;
+    margin: 0;
+}
+
+/* ===== BUSCADOR ===== */
+.gestion-editar__busqueda {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+    .gestion-editar__busqueda input {
+        border-radius: 10px;
+    }
+
+    .gestion-editar__busqueda button {
+        border-radius: 10px;
+        padding: 6px 18px;
+    }
+
+/* ===== LAYOUT ===== */
+.gestion-editar__panel {
+    display: flex;
+    gap: 20px;
+}
+
+/* ===== TABLA CONTENEDOR ===== */
+.gestion-editar__tabla-container {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 15px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    height: 550px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER TABLA */
+.gestion-editar__tabla-header {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* SCROLL INTERNO */
+.gestion-editar__tabla-scroll {
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* TABLA */
+.gestion-editar__tabla {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .gestion-editar__tabla thead {
+        background: #f1f3f5;
+    }
+
+/* ===== FORMULARIO ===== */
+.gestion-editar__form-card {
+    background: #f8fafc;
+    border-radius: 14px;
+    padding: 15px;
+    height: 550px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 100px;
+}
+
+    .gestion-editar__form-card .card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: none;
+    }
+
+/* ===== BOTONES ===== */
+.btn-editar {
+    border-radius: 8px;
+}
+
+.btn-success {
+    border-radius: 10px;
+}
+
+.btn-secondary {
+    border-radius: 10px;
+}
